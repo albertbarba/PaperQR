@@ -3,6 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Ignore all ipynb
+*.ipynb
+# Ignore all pdfs
+*.pdf
+# except the example
+!(example.pdf)
+
 # C extensions
 *.so
 
