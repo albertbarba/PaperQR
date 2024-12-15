@@ -1,4 +1,4 @@
-import AddQR
+import main
 from urllib.request import urlretrieve
 from urllib.error import URLError
 
@@ -25,5 +25,5 @@ except URLError:
 except:
     print("There has been a problem. Try to insert the URL from the web browser.")
 name=file.split(sep)[-1]
-AddQR.QRArxiv(file,sep=sep,shortname='.'.join((name,'pdf')),id_arxiv=id_arxiv)
+main.QRArxiv(file,sep=sep,shortname='.'.join((name,'pdf')),id_arxiv=id_arxiv)
 print("The file {} is ready to eat.".format(name))
