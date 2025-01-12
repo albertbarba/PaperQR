@@ -93,13 +93,9 @@ def QRArxiv(filename,dir='.',sep='\\',deleteQR=True,id_arxiv=None,shortname=''):
 if __name__ == '__main__':
     import sys
     if len(sys.argv)  == 1:
-        filename = "1605.06104.pdf"
-        QRArxiv(filename)
+        print("Please, provide a pdf to QR.")
     elif len(sys.argv) == 2:
         filename = sys.argv[1]
         QRArxiv(filename)
     else:
         print("Too many arguments were given.")
-
-
-
