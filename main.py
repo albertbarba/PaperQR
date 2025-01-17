@@ -9,11 +9,12 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
 
     # Open pdf, create the object PdfFileReader, extract a page from it, extract text and get the id
 
-    file = open(filename,'rb')
-    doc = pdf.PdfReader(file)
-    page = doc.get_page(0)
+
+    pdf_file = open(filename,'rb')
+    pdf_doc = pdf.PdfReader(pdf_file)
+    pdf_page = pdf_doc.get_page(0)
     if id_arxiv==None:
-        pdf_text = page.extract_text()
+        pdf_text = pdf_page.extract_text()
         id_arxiv = pdf_text[pdf_text.find(":")+1:pdf_text.find(" ")]
     if shortname == '':
         shortname = filename
@@ -65,7 +66,7 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
     qr_file = open(separator.join([path,"QRtempfile_{}.pdf".format(shortname)]),'rb')
     qr_doc = pdf.PdfReader(qr_file)
     qr_page = qr_doc.get_page(0)
-    page.merge_page(qr_page)
+    pdf_page.merge_page(qr_page)
 
 
     # The result is put out and the files are closed (except the canvas c)
@@ -75,13 +76,13 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
 
 
     output = pdf.PdfWriter()
-    for n in range(doc.get_num_pages()):
-        output.add_page(doc.get_page(n))
+    for n in range(pdf_doc.get_num_pages()):
+        output.add_page(pdf_doc.get_page(n))
     outputStream = open(sep.join([dir,shortname+'-qr.pdf']),'wb')
     output.write(outputStream)
     outputStream.close()
     qr_file.close()
-    file.close()
+    pdf_file.close()
     if deleteQR == True:
         os.remove(separator.join([path,"QRtempfile_{}.pdf".format(shortname)]))
 
