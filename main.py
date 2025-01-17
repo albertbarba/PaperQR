@@ -1,4 +1,4 @@
-import pypdf as pdf
+from pypdf import PdfReader, PdfWriter
 from os import sep, remove
 
 separator = sep
@@ -11,7 +11,7 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
 
 
     pdf_file = open(filename,'rb')
-    pdf_doc = pdf.PdfReader(pdf_file)
+    pdf_doc = PdfReader(pdf_file)
     pdf_page = pdf_doc.get_page(0)
     if id_arxiv==None:
         pdf_text = pdf_page.extract_text()
@@ -60,14 +60,14 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
     # The previous qr file is merged with the desired arxiv paper
 
     qr_file = open(separator.join([dir,"QRtempfile_{}.pdf".format(shortname)]),'rb')
-    qr_doc = pdf.PdfReader(qr_file)
+    qr_doc = PdfReader(qr_file)
     qr_page = qr_doc.get_page(0)
     pdf_page.merge_page(qr_page)
 
 
     # The result is put out and the files are closed (except the canvas c)
 
-    output = pdf.PdfWriter()
+    output = PdfWriter()
     for n in range(pdf_doc.get_num_pages()):
         output.add_page(pdf_doc.get_page(n))
     outputStream = open(sep.join([dir,shortname+'-qr.pdf']),'wb')
