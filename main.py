@@ -1,7 +1,7 @@
 import pypdf as pdf
-import os
+from os import sep, remove
 
-separator = os.sep
+separator = sep
 
 def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname=''):
     """Takes a pdf file from Arxiv.org and creates an exact copy with a QR embedded in the first page that links back to the corresponding paper on Arxiv.org."""
@@ -76,7 +76,7 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
     qr_file.close()
     pdf_file.close()
     if deleteQR == True:
-        os.remove(separator.join([dir,"QRtempfile_{}.pdf".format(shortname)]))
+        remove(separator.join([dir,"QRtempfile_{}.pdf".format(shortname)]))
 
 
 if __name__ == '__main__':
