@@ -18,7 +18,7 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
         id_arxiv = pdf_text[pdf_text.find(":")+1:pdf_text.find(" ")]
     if shortname == '':
         shortname = filename
-    elif shortname.endswith('.pdf'):
+    if shortname.endswith('.pdf'):
         shortname = shortname[:-4]
     else:
         pass # shortname = shortname
