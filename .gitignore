@@ -14,8 +14,8 @@ __pycache__/
 # C extensions
 *.so
 
-# pdfAll: this is obsolete now
-./DownloadArxiv.py
+# downloadarxiv: this is obsolete now
+DownloadArxiv.py
 
 # pdfAll: merge it with add-qr for multiple files
 QRAll.py
