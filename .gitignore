@@ -13,6 +13,9 @@ __pycache__/
 # C extensions
 *.so
 
+# pdfAll: merge it with add-qr for multiple files
+QRAll.py
+
 # Gitmessage
 .gitmessage
 
