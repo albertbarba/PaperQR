@@ -47,7 +47,7 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
 
     # with tempfile.TemporaryDirectory() as path:
     path = dir
-    c = canvas.Canvas('\\'.join([path,"QRtempfile_{}.pdf".format(shortname)]), pagesize=letter)
+    c = canvas.Canvas(separator.join([path,"QRtempfile_{}.pdf".format(shortname)]), pagesize=letter)
     qr_code = qr.QrCodeWidget(link)
     bounds = qr_code.getBounds()
     widthqr = bounds[2] - bounds[0]
@@ -63,7 +63,7 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
 
 
 
-    qr_file = open('\\'.join([path,"QRtempfile_{}.pdf".format(shortname)]),'rb')
+    qr_file = open(separator.join([path,"QRtempfile_{}.pdf".format(shortname)]),'rb')
     qr_doc = pdf.PdfReader(qr_file)
     qr_page = qr_doc.get_page(0)
     pdf_page.merge_page(qr_page)
@@ -84,7 +84,7 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
     qr_file.close()
     pdf_file.close()
     if deleteQR == True:
-        os.remove('\\'.join([path,"QRtempfile_{}.pdf".format(shortname)]))
+        os.remove(separator.join([path,"QRtempfile_{}.pdf".format(shortname)]))
 
 
 if __name__ == '__main__':
