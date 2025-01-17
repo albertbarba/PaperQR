@@ -9,6 +9,7 @@ __pycache__/
 *.pdf
 # except the example
 !(example.pdf)
+!(example-qr.pdf)
 
 # C extensions
 *.so
