@@ -46,8 +46,7 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
 
 
     # with tempfile.TemporaryDirectory() as path:
-    path = dir
-    c = canvas.Canvas(separator.join([path,"QRtempfile_{}.pdf".format(shortname)]), pagesize=letter)
+    c = canvas.Canvas(separator.join([dir,"QRtempfile_{}.pdf".format(shortname)]), pagesize=letter)
     qr_code = qr.QrCodeWidget(link)
     bounds = qr_code.getBounds()
     widthqr = bounds[2] - bounds[0]
@@ -60,20 +59,13 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
 
     # The previous qr file is merged with the desired arxiv paper
 
-
-
-
-    qr_file = open(separator.join([path,"QRtempfile_{}.pdf".format(shortname)]),'rb')
+    qr_file = open(separator.join([dir,"QRtempfile_{}.pdf".format(shortname)]),'rb')
     qr_doc = pdf.PdfReader(qr_file)
     qr_page = qr_doc.get_page(0)
     pdf_page.merge_page(qr_page)
 
 
     # The result is put out and the files are closed (except the canvas c)
-
-
-
-
 
     output = pdf.PdfWriter()
     for n in range(pdf_doc.get_num_pages()):
@@ -84,15 +76,15 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
     qr_file.close()
     pdf_file.close()
     if deleteQR == True:
-        os.remove(separator.join([path,"QRtempfile_{}.pdf".format(shortname)]))
+        os.remove(separator.join([dir,"QRtempfile_{}.pdf".format(shortname)]))
 
 
 if __name__ == '__main__':
-    import sys
-    if len(sys.argv)  == 1:
+    from sys import argv
+    if len(argv)  == 1:
         print("Please, provide a pdf to QR-ify.")
-    elif len(sys.argv) == 2:
-        filename = sys.argv[1]
+    elif len(argv) == 2:
+        filename = argv[1]
         QRArxiv(filename)
     else:
         print("Too many arguments were given.")
