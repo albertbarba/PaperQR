@@ -1,13 +1,10 @@
-# Import stuff
-
-
 import pypdf as pdf
 import os
 
+separator = os.sep
 
-def QRArxiv(filename,dir='.',sep='\\',deleteQR=True,id_arxiv=None,shortname=''):
-
-    """Takes a PDF from Arxiv.org and creates an exact copy with a QR embedded in the first page that links back to the corresponding paper on Arxiv.org."""
+def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname=''):
+    """Takes a pdf file from Arxiv.org and creates an exact copy with a QR embedded in the first page that links back to the corresponding paper on Arxiv.org."""
 
 
     # Open pdf, create the object PdfFileReader, extract a page from it, extract text and get the id
