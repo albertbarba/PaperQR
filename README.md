@@ -4,6 +4,8 @@ For the nerds like myself who love reading scientific papers from hard copies, b
 
 Any science undergrad, graduate or PhD student will have dealt with reading multiple papers about a niche topic in a very short time, begging often the question “_where_ have I read about this?” Having access to the pdfs could simplify the process greatly.
 
+![Example of PaperQR in a sample pdf](./example.png )
+
 Luckily, most modern papers you'll ever need—from arxiv.org/inspirehep.net—already contain a link to the corresponding downloading website. PaperQR knows how to automatically extract it, create a QR to the URL and access it from your phone.
 
 [¿Turn it into a Chrome extension?]::
