@@ -3,7 +3,7 @@ from os import sep, remove
 
 separator = sep
 
-def QRArxiv(filename, dir='.', sep=separator, deleteQR=True, id_arxiv=None, shortname=''):
+def qrify(filename, dir='.', sep=separator, deleteQR=True, id_arxiv=None, shortname=''):
     """Takes a pdf file from Arxiv.org and creates an exact copy with
     a QR embedded in the first page that links back to the corresponding
     paper on Arxiv.org."""
@@ -79,6 +79,6 @@ if __name__ == '__main__':
         print("Please, provide a pdf to QR-ify.")
     elif len(argv) == 2:
         filename = argv[1]
-        QRArxiv(filename)
+        qrify(filename)
     else:
         print("Too many arguments were given.")
