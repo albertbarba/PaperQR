@@ -3,14 +3,14 @@ from os import sep, remove
 
 separator = sep
 
-def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname=''):
-    """Takes a pdf file from Arxiv.org and creates an exact copy with a QR embedded in the first page that links back to the corresponding paper on Arxiv.org."""
+def QRArxiv(filename, dir='.', sep=separator, deleteQR=True, id_arxiv=None, shortname=''):
+    """Takes a pdf file from Arxiv.org and creates an exact copy with
+    a QR embedded in the first page that links back to the corresponding
+    paper on Arxiv.org."""
 
 
     # Open pdf, create the object PdfFileReader, extract a page from it, extract text and get the id
-
-
-    pdf_file = open(filename,'rb')
+    pdf_file = open(filename, 'rb')
     pdf_doc = PdfReader(pdf_file)
     pdf_page = pdf_doc.get_page(0)
     if id_arxiv==None:
@@ -28,7 +28,7 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
 
 
     http = "https://arxiv.org/pdf"
-    link = '/'.join([http,id_arxiv])
+    link = '/'.join([http, id_arxiv])
 
     print(id_arxiv)
 
@@ -46,7 +46,7 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
 
 
     # with tempfile.TemporaryDirectory() as path:
-    c = canvas.Canvas(separator.join([dir,"QRtempfile_{}.pdf".format(shortname)]), pagesize=letter)
+    c = canvas.Canvas(separator.join([dir, "QRtempfile_{}.pdf".format(shortname)]), pagesize=letter)
     qr_code = qr.QrCodeWidget(link)
     bounds = qr_code.getBounds()
     widthqr = bounds[2] - bounds[0]
@@ -59,7 +59,7 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
 
     # The previous qr file is merged with the desired arxiv paper
 
-    qr_file = open(separator.join([dir,"QRtempfile_{}.pdf".format(shortname)]),'rb')
+    qr_file = open(separator.join([dir, "QRtempfile_{}.pdf".format(shortname)]), 'rb')
     qr_doc = PdfReader(qr_file)
     qr_page = qr_doc.get_page(0)
     pdf_page.merge_page(qr_page)
@@ -70,13 +70,13 @@ def QRArxiv(filename,dir='.',sep=separator,deleteQR=True,id_arxiv=None,shortname
     output = PdfWriter()
     for n in range(pdf_doc.get_num_pages()):
         output.add_page(pdf_doc.get_page(n))
-    outputStream = open(sep.join([dir,shortname+'-qr.pdf']),'wb')
+    outputStream = open(sep.join([dir, shortname+'-qr.pdf']), 'wb')
     output.write(outputStream)
     outputStream.close()
     qr_file.close()
     pdf_file.close()
     if deleteQR == True:
-        remove(separator.join([dir,"QRtempfile_{}.pdf".format(shortname)]))
+        remove(separator.join([dir, "QRtempfile_{}.pdf".format(shortname)]))
 
 
 if __name__ == '__main__':
