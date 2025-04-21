@@ -1,5 +1,6 @@
 - Rice up the code
 - Turn into a Chrome extension?
 - Allow more than 1 pdf to qr
+- Add shields
 - Explain usage: TODO
 - Make sure that—when title is too long—it won't overlap; and if it does let it have an opacity so both the title and qr can be visible (or some other solution, e.g. color, …)
